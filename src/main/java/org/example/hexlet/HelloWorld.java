@@ -10,6 +10,14 @@ public class HelloWorld {
         });
         // Описываем что загрузится по адресу /
         app.get("/", ctx -> ctx.result("Hello World"));
+        app.get("/hello", ctx -> {
+            String name = ctx.queryParam("name");
+            if( name != null && !name.isEmpty() ) {
+                ctx.result("Hello, " + name + "!");
+            } else {
+                ctx.result("Hello, World!");
+            }
+        });
         app.start(7070); // Стартуем веб-сервер
     }
 }
